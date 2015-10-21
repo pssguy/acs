@@ -6,10 +6,10 @@ dashboardPage(title = "acs",
   
   dashboardSidebar(
     includeCSS("custom.css"),
-#     inputPanel(
-#     sliderInput("time",label="Minutes to Repeat",min=1,max=60, value=1),
-#     radioButtons("new",NULL,c("New","All"),inline=TRUE)
-#     ),
+    inputPanel(
+    selectInput("state","Choose",stateChoice, multiple=FALSE),
+  uiOutput("a")
+    ),
     
     
     
@@ -45,10 +45,11 @@ dashboardPage(title = "acs",
     tabItem("income",
            
                 box(
-                  width = 4, collapsible = TRUE,collapsed=TRUE,
+                  width = 12, collapsible = TRUE,collapsed=FALSE,
                   status = "success", solidHeader = TRUE,
                   title = "County Map",
-                  DT::dataTableOutput("countyMap") 
+                  textOutput("test"),
+                  leafletOutput("countyMap") 
                 )
             
     )
