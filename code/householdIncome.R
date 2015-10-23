@@ -15,6 +15,7 @@ countyCodes <-  fips_codes %>%
 tracts <- tracts(state = input$state, county = theCounties, cb=TRUE)
 
  } else {
+   print("all called")
    countyCodes <-  fips_codes %>% 
      filter(state_name==input$state) %>% 
      select(county_code)
@@ -113,7 +114,7 @@ df <- income_df %>%
 # 
 # colnames(df) <- c("tract","high_pc","low_pc","av","GEOID","high_count","low_count","total")
 
-tracts <- tracts(state = input$state, county = input$county, cb=TRUE)
+#tracts <- tracts(state = input$state, county = input$county, cb=TRUE)
 
 income_merged<- geo_join(tracts, df, "GEOID", "GEOID")
 #class(income_merged)
