@@ -9,8 +9,8 @@ dashboardPage(title = "acs",
     inputPanel(
     selectInput("state",label = NULL,c("Choose State"="", stateChoice), multiple=FALSE),
     uiOutput("a"),
-    radioButtons("income","Income Category",c("% >200k"),inline=T),
-    radioButtons("map","Map",c("OpenStreetMap","CartoDB.Positron","MapQuestOpen.Aerial"),inline=T),
+    radioButtons("income","Income Category",c("% >200k","% <20k","Approx Mean"),inline=T),
+    radioButtons("map","Map",c("OpenStreetMap","CartoDB.Positron","MapQuestOpen.Aerial")),
  
   actionButton("button", "Obtain Map")
     ),
