@@ -12,9 +12,8 @@ shinyServer(function(input, output,session) {
       filter(state_name == input$state) %>% 
       .$county
     
-   # print(countyChoice)
     
-    selectInput("county","Choice(s)", c("Choose Counties"="", countyChoice), selected=c("Dale County"),multiple = T) 
+    selectInput("county","Choose Countie(s)s", c("Choose Counties"="", countyChoice),multiple = T)
   })
   
   # code for individual tabs

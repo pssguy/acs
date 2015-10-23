@@ -7,9 +7,13 @@ dashboardPage(title = "acs",
   dashboardSidebar(
     includeCSS("custom.css"),
     inputPanel(
-    selectInput("state","Choose",stateChoice, multiple=FALSE),
-  uiOutput("a")
+    selectInput("state","Choose State",c("Choose State"="", stateChoice), multiple=FALSE),
+    uiOutput("a"),
+    radioButtons("map","Choose Map",c("CartoDB.Positron","MapQuestOpen.Aerial"),inline=T),
+ 
+  actionButton("button", "Obtain Map")
     ),
+ 
     
     
     

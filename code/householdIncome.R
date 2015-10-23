@@ -1,7 +1,7 @@
 
 #sprint("house") # conrims come her for processing
 
-data <- reactive({
+data <- eventReactive(input$button,{
   
   print("enter reaCTIVE")
 #theCounties <-as.numeric(c(countyChoice[1],countyChoice[51]))
@@ -93,10 +93,15 @@ pal <- colorNumeric(
   domain = spdf$percent
 )
 
-map4<-leaflet() %>% # there were other maps in blog
-  #  addProviderTiles("CartoDB.Positron") %>% #  built using data from OpenStreetMap - without it ther is no map at all just shapes and data and possibly with others eg OpenWeatherMap.Clouds
-  addProviderTiles("MapQuestOpen.Aerial") %>% 
-  addPolygons(data = spdf, 
+if (input$map=="CartoDB.Positron") {
+map<-leaflet() %>% 
+  addProviderTiles("CartoDB.Positron") 
+} else {
+  map<-leaflet() %>% 
+    addProviderTiles("MapQuestOpen.Aerial")
+}
+  
+map %>%  addPolygons(data = spdf, 
               fillColor = ~pal(percent), 
               color = "#b2aeae", # you need to use hex colors
               fillOpacity = 0.7, 
@@ -108,5 +113,5 @@ map4<-leaflet() %>% # there were other maps in blog
             position = "bottomright", 
             title = "Percent of Households<br>above $200k",
             labFormat = labelFormat(suffix = "%")) 
-map4
+
 })
