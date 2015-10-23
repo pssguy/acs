@@ -3,37 +3,38 @@
 
 data <- eventReactive(input$button,{
   
-  print("enter reaCTIVE")
-#theCounties <-as.numeric(c(countyChoice[1],countyChoice[51]))
-  
- 
+
+ if (input$county!="All") {
   theCounties <-input$county
-  print(theCounties)
+
   
 countyCodes <-  fips_codes %>% 
     filter(state_name==input$state&county %in% theCounties) %>% 
-    select(county_code) #%>% 
-   # as.numeric()
+    select(county_code) 
 
-print(countyCodes)
-print(countyCodes$county_code)
+tracts <- tracts(state = input$state, county = theCounties, cb=TRUE)
+
+ } else {
+   countyCodes <-  fips_codes %>% 
+     filter(state_name==input$state) %>% 
+     select(county_code)
+   
+   tracts <- tracts(state = input$state, county = NULL, cb=TRUE)
+   #tracts <- tracts(state = "Arizona", county = NULL, cb=TRUE) appears to work
+ }
 countyCodes <- as.numeric(countyCodes$county_code)
 print(countyCodes)
+
   
-tracts <- tracts(state = input$state, county = theCounties, cb=TRUE)
-print("success")
+
+
 geo<-geo.make(state=input$state,
               county=countyCodes, tract="*")
-print(geo)
-print("success2")
+
+
 income<-acs.fetch(endyear = 2012, span = 5, geography = geo,
                   table.number = "B19001", col.names = "pretty")
 
-print("income returned")
-print(class(income))
-
-#test <-data.frame(income@estimate)
-# could add slider unit
 cols <- attr(income, "acs.colnames") # user could choose one or all could be displayed ( thogu would make large table) # first is prob total
 
 # combine stae/county/tract into one id
@@ -60,21 +61,21 @@ class(income_merged)
 
 # there are some tracts with no land that we should exclude
 income_merged <- income_merged[income_merged$ALAND>0,]
-
-print(names(income_merged))
-county <- theCounties
-print(county)
-print("here we are")
-info=list(income_merged=income_merged,county=county)
+# 
+# print(names(income_merged))
+# county <- theCounties
+# print(county)
+# print("here we are")
+info=list(income_merged=income_merged)#,county=county)
   #info=list(county=county)
 return(info)
 
 })
 
-output$test <- renderText({
-  if (is.null(input$county)) return()
-  data()$county
-})
+# output$test <- renderText({
+#   if (is.null(input$county)) return()
+#   data()$county
+# })
 
 # create map (I replaced income_merged$id (non-existent)with income_merged$GEOID but does not mwean much unless they have names )
 

@@ -11,9 +11,9 @@ shinyServer(function(input, output,session) {
     countyChoice <- fips_codes %>% 
       filter(state_name == input$state) %>% 
       .$county
+    countyChoice <- c("All", countyChoice)
     
-    
-    selectInput("county","Choose Countie(s)s", c("Choose Counties"="", countyChoice),multiple = T)
+    selectInput("county","Choose Countie(s)",  countyChoice,multiple = T)
   })
   
   # code for individual tabs

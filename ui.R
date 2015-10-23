@@ -51,8 +51,8 @@ dashboardPage(title = "acs",
                 box(
                   width = 12, collapsible = TRUE,collapsed=FALSE,
                   status = "success", solidHeader = TRUE,
-                  title = "County Map",
-                  textOutput("test"),
+                  title = "County Map (Response time depends on Number of Counties chosen)",
+               #   textOutput("test"),
                   leafletOutput("countyMap") 
                 )
             
