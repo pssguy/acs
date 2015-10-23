@@ -7,9 +7,10 @@ dashboardPage(title = "acs",
   dashboardSidebar(
     includeCSS("custom.css"),
     inputPanel(
-    selectInput("state","Choose State",c("Choose State"="", stateChoice), multiple=FALSE),
+    selectInput("state",label = NULL,c("Choose State"="", stateChoice), multiple=FALSE),
     uiOutput("a"),
-    radioButtons("map","Choose Map",c("CartoDB.Positron","MapQuestOpen.Aerial"),inline=T),
+    radioButtons("income","Income Category",c("% >200k"),inline=T),
+    radioButtons("map","Map",c("OpenStreetMap","CartoDB.Positron","MapQuestOpen.Aerial"),inline=T),
  
   actionButton("button", "Obtain Map")
     ),

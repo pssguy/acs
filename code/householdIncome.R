@@ -95,11 +95,16 @@ pal <- colorNumeric(
 )
 
 if (input$map=="CartoDB.Positron") {
+  
 map<-leaflet() %>% 
   addProviderTiles("CartoDB.Positron") 
-} else {
+} else if (input$map=="MapQuestOpen.Aerial") {
   map<-leaflet() %>% 
     addProviderTiles("MapQuestOpen.Aerial")
+} else {
+  print("default")
+  map<-leaflet() %>% 
+    addTiles()
 }
   
 map %>%  addPolygons(data = spdf, 
