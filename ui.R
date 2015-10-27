@@ -28,25 +28,18 @@ dashboardPage(title = "acs",
       
       menuItem("Info", tabName = "info", icon = icon("info")),
       
-      menuItem(
-        "Other Dashboards",
-        
-        
-        menuSubItem("Climate",href = "https://mytinyshinys.shinyapps.io/climate"),
-        menuSubItem("Cricket",href = "https://mytinyshinys.shinyapps.io/cricket"),
-        menuSubItem("Mainly Maps",href = "https://mytinyshinys.shinyapps.io/mainlyMaps"),
-        menuSubItem("MLB",href = "https://mytinyshinys.shinyapps.io/mlbCharts"),
-        
-        menuSubItem("World Soccer",href = "https://mytinyshinys.shinyapps.io/worldSoccer")
-        
-      ),
-      
-     
-      
-      menuItem("", icon = icon("twitter-square"),
-               href = "https://twitter.com/pssGuy"),
-      menuItem("", icon = icon("envelope"),
-               href = "mailto:agcur@rogers.com")
+
+tags$hr(),
+menuItem(text="Main Dashboard",href="https://mytinyshinys.shinyapps.io/dashboard",badgeLabel = "Home"),
+tags$hr(),
+
+tags$body(
+     a(class="addpad",href="https://twitter.com/pssGuy", target="_blank",img(src="images/twitterImage25pc.jpg")),
+     a(class="addpad2",href="mailto:agcur@rogers.com", img(src="images/email25pc.jpg")),
+     a(class="addpad2",href="https://github.com/pssguy",target="_blank",img(src="images/GitHub-Mark30px.png")),
+     a(href="https://rpubs.com/pssguy",target="_blank",img(src="images/RPubs25px.png"))
+)
+
       
     
   )),
