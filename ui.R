@@ -26,6 +26,7 @@ dashboardPage(title = "acs",
      
       ),
       
+      menuItem("Info", tabName = "info", icon = icon("info")),
       
       menuItem(
         "Other Dashboards",
@@ -39,6 +40,9 @@ dashboardPage(title = "acs",
         menuSubItem("World Soccer",href = "https://mytinyshinys.shinyapps.io/worldSoccer")
         
       ),
+      
+     
+      
       menuItem("", icon = icon("twitter-square"),
                href = "https://twitter.com/pssGuy"),
       menuItem("", icon = icon("envelope"),
@@ -57,7 +61,8 @@ dashboardPage(title = "acs",
                   leafletOutput("countyMap") 
                 )
             
-    )
+    ),
+    tabItem("info", includeMarkdown("info.md"))
     
     
     
